@@ -32,7 +32,7 @@ void count() {
 
 //-----------------------<현재 PPFD 계산 및 출력 함수 정의>------------------------
 void Current_PPFD(float a,float b) {
-    Serial.print("Current_PPFD : ") ;
+    Serial.print("Light : ") ;
     Serial.print(a/b) ;
     Serial.print(',');
 //    Serial.println(" µmol/m^2s") ;
@@ -94,7 +94,6 @@ void loop()   {
 
 //*************************************************************
 //**********[토양수분센서 (A3센서) 및 서보모터 작동]****************
-\
     int Moisture = analogRead( A3 ) ;
     
     int Mois = map( Moisture, 0, 684, 0, 100) ;
@@ -111,8 +110,7 @@ void loop()   {
     else {
         myservo.write(130); // Servo Motor 130도 (Close)
         Serial.print("Soil_Moisture : ") ;
-        Serial.println( Mois );   
-        Serial.print(',');                                                                                       
+        Serial.println( Mois );                                                                                      
 //        Serial.print(" %  ----------");
  //       Serial.println(" Enough Water") ;
     }

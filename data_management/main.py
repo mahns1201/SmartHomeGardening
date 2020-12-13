@@ -3,17 +3,20 @@ import from_arduino
 import to_firebase
 
 def main():
+    split = '='
+
     while True:
         from_arduino.make_file()
-        print('update file')
-        time.sleep(5)
+        print('update local txt file')
+        time.sleep(1)
 
         to_firebase.upload_to_realtime()
-        print("update realtime database")
-        time.sleep(5)
+        print("upload to realtime database")
+        time.sleep(1)
 
         to_firebase.upload_to_firestore()
         print('upload to firestore')
-        time.sleep(30)
+        print(split * 105)
+        time.sleep(3)
 
 main()

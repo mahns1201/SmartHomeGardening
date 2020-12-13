@@ -1,0 +1,1 @@
+Light : 54612, Current_PPFD : 484123.59,Humidity : 0.00,Temperature : 0.00,Soil_Moisture : 65

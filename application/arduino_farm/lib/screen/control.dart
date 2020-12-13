@@ -33,25 +33,25 @@ class _ControlState extends State<Control> {
   void watering_on() async {
     await DBref
         .child("WATERING_STATUS")
-        .update({'DATA': 'TRUE'});
+        .update({'DATA': 'ON'});
   }
 
   void watering_off() async {
     await DBref
         .child("WATERING_STATUS")
-        .update({'DATA': 'FALSE'});
+        .update({'DATA': 'OFF'});
   }
 
-  void fan_on() async {
+  void drain_water_on() async {
     await DBref
-        .child("FAN_STATUS")
-        .update({'DATA': 'TRUE'});
+        .child("BOTTLE_STATUS")
+        .update({'DATA': 'ON'});
   }
 
-  void fan_off() async {
+  void drain_water_off() async {
     await DBref
-        .child("FAN_STATUS")
-        .update({'DATA': 'FALSE'});
+        .child("BOTTLE_STATUS")
+        .update({'DATA': 'OFF'});
   }
 
 
@@ -130,7 +130,7 @@ class _ControlState extends State<Control> {
                   print('ON');
                 },
                 child: Text(
-                  'Watering ON',
+                  '물주기',
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                 ),
@@ -144,7 +144,7 @@ class _ControlState extends State<Control> {
                   print('OFF');
                 },
                 child: Text(
-                  'Watering OFF',
+                  '물주기 멈춤',
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                 ),
@@ -154,11 +154,11 @@ class _ControlState extends State<Control> {
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
                 color: Colors.blue,
                 onPressed: () {
-                  fan_on();
+                  drain_water_on();
                   print('ON');
                 },
                 child: Text(
-                  'FAN ON',
+                  '물통 비우기',
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                 ),
@@ -168,11 +168,11 @@ class _ControlState extends State<Control> {
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
                 color: Colors.red,
                 onPressed: () {
-                  fan_off();
+                  drain_water_off();
                   print('OFF');
                 },
                 child: Text(
-                  'FAN OFF',
+                  '물통 비우기 멈춤',
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                 ),

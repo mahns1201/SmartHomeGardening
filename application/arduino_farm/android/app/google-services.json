@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "112100983451",
+    "firebase_url": "https://fir-please-edec2.firebaseio.com",
+    "project_id": "fir-please-edec2",
+    "storage_bucket": "fir-please-edec2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:112100983451:android:5da994e5f41bff7c407c3e",
+        "android_client_info": {
+          "package_name": "com.example.arduino_farm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "112100983451-dherrhf9rp2lbvfguj1d1c95ukapgn8k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.arduino_farm",
+            "certificate_hash": "39ca95268959c7e6435f90bce38faa35ed3de762"
+          }
+        },
+        {
+          "client_id": "112100983451-g8ik9db390fct6vibve4j0vruvlaklmb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDuPqC2JIswXX5z9oX8-DcDhFoPXSx_rJM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "112100983451-g8ik9db390fct6vibve4j0vruvlaklmb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

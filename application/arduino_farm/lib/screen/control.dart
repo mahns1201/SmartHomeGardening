@@ -19,39 +19,32 @@ class _ControlState extends State<Control> {
 
   void led_on() async {
     await DBref
-        // .child("LED_STATUS")
         .update({'LED_STATUS': 'ON'});
   }
 
   void led_off() async {
     await DBref
         .update({'LED_STATUS': 'OFF'});
-        // .child("LED_STATUS")
-        // .update({'DATA': 'FALSE'});
   }
 
   void watering_on() async {
     await DBref
-        .child("WATERING_STATUS")
-        .update({'DATA': 'ON'});
+        .update({'WATERING_STATUS': 'ON'});
   }
 
   void watering_off() async {
     await DBref
-        .child("WATERING_STATUS")
-        .update({'DATA': 'OFF'});
+        .update({'WATERING_STATUS': 'OFF'});
   }
 
   void drain_water_on() async {
     await DBref
-        .child("BOTTLE_STATUS")
-        .update({'DATA': 'ON'});
+        .update({'BOTTLE_STATUS': 'ON'});
   }
 
   void drain_water_off() async {
     await DBref
-        .child("BOTTLE_STATUS")
-        .update({'DATA': 'OFF'});
+        .update({'BOTTLE_STATUS': 'OFF'});
   }
 
 

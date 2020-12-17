@@ -1,6 +1,9 @@
 #include <ESP8266WiFi.h>                                                
 #include <FirebaseArduino.h>  
 #include <Adafruit_NeoPixel.h>
+#include <Servo.h>  
+
+Servo myservo;
 
 #ifdef __AVR__
  #include <avr/power.h> // Required for 16 MHz Adafruit Trinket
@@ -11,12 +14,14 @@
 #define WIFI_SSID "iarslab" // 연결 가능한 wifi의 ssid
 #define WIFI_PASSWORD "iarslab0"
 
-#define PIN 0
+#define PIN_led 0
+#define PIN_watering 16
 #define NUMPIXELS 8
 
-Adafruit_NeoPixel pixels(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel pixels(NUMPIXELS, PIN_led, NEO_GRB + NEO_KHZ800);
 
-String fireStatus = "";                                                   
+// String LED = "";       
+String watering = "";                                            
                                                          
 void setup() {
 #if defined(__AVR_ATtiny85__) && (F_CPU == 16000000)
@@ -25,9 +30,6 @@ void setup() {
 
   Serial.begin(115200);
   delay(1000);
-  
-        
-  
                  
   WiFi.begin(WIFI_SSID, WIFI_PASSWORD);                             
   Serial.print("Connecting to ");
@@ -40,39 +42,49 @@ void setup() {
   Serial.print("Connected to ");
   Serial.println(WIFI_SSID);
   Serial.print("IP Address is : ");
-  Serial.println(WiFi.localIP());                                                      //print local IP address
-  Firebase.begin(FIREBASE_HOST, FIREBASE_AUTH);                                       // connect to firebase
-  Firebase.setString("LED_STATUS", "OFF");
+  Serial.println(WiFi.localIP());                                                 
+  Firebase.begin(FIREBASE_HOST, FIREBASE_AUTH);     
   
-  pixels.begin(); // INITIALIZE NeoPixel strip object (REQUIRED)
+  // pixels.begin();
   pinMode(LED_BUILTIN, OUTPUT);
+  myservo.attach(PIN_watering);
 }
 
 void loop() {
-  fireStatus = Firebase.getString("LED_STATUS");                                      // get ld status input from firebase
-  if (fireStatus == "ON") {                                                          // compare the input of led status received from firebase
+  // LED = Firebase.getString("LED_STATUS");     
+  watering = Firebase.getString("WATERING_STATUS");
+
+  /*
+  if (LED == "ON") {                                                        
     Serial.println("Led Turned ON");                         
     
-    pixels.setPixelColor(0, pixels.Color(0, 150, 0));
-    pixels.setPixelColor(1, pixels.Color(0, 150, 0));
-    pixels.setPixelColor(2, pixels.Color(0, 150, 0));
-    pixels.setPixelColor(3, pixels.Color(0, 150, 0));
-    pixels.setPixelColor(4, pixels.Color(0, 150, 0));
-    pixels.setPixelColor(5, pixels.Color(0, 150, 0));
-    pixels.setPixelColor(6, pixels.Color(0, 150, 0));
-    pixels.setPixelColor(7, pixels.Color(0, 150, 0));
+    pixels.setPixelColor(0, pixels.Color(255, 0, 0));
+    pixels.setPixelColor(1, pixels.Color(0, 0, 255));
+    pixels.setPixelColor(2, pixels.Color(255, 0, 0));
+    pixels.setPixelColor(3, pixels.Color(0, 0, 255));
+    pixels.setPixelColor(4, pixels.Color(255, 0, 0));
+    pixels.setPixelColor(5, pixels.Color(0, 0, 255));
+    pixels.setPixelColor(6, pixels.Color(255, 0, 0));
+    pixels.setPixelColor(7, pixels.Color(0, 0, 255));
     pixels.show();
 
     digitalWrite(LED_BUILTIN, LOW);
   }                                                  
-  else if (fireStatus == "OFF") {                                                  // compare the input of led status received from firebase
+  else if (LED == "OFF") {                                                
     Serial.println("Led Turned OFF");
-    digitalWrite(LED_BUILTIN, HIGH);                                               // make bultin led OFF
+    digitalWrite(LED_BUILTIN, HIGH);                                               
     pixels.clear();
     pixels.show();
   }
+  */
   
-  else {
-    Serial.println("Wrong Credential! Please send ON/OFF");
+  if (watering == "ON")
+  {
+    myservo.write(60);
+  }
+  
+  else if (watering == "OFF")
+  {
+    myservo.write(15);
   }
 }

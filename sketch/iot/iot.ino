@@ -16,11 +16,12 @@ Servo myservo;
 
 #define PIN_led 0
 #define PIN_watering 16
+
 #define NUMPIXELS 8
 
 Adafruit_NeoPixel pixels(NUMPIXELS, PIN_led, NEO_GRB + NEO_KHZ800);
 
-// String LED = "";       
+String LED = "";       
 String watering = "";                                            
                                                          
 void setup() {
@@ -47,36 +48,23 @@ void setup() {
   
   // pixels.begin();
   pinMode(LED_BUILTIN, OUTPUT);
+  pinMode(PIN_led, OUTPUT);
   myservo.attach(PIN_watering);
 }
 
 void loop() {
-  // LED = Firebase.getString("LED_STATUS");     
+  LED = Firebase.getString("LED_STATUS");     
   watering = Firebase.getString("WATERING_STATUS");
 
-  /*
-  if (LED == "ON") {                                                        
-    Serial.println("Led Turned ON");                         
-    
-    pixels.setPixelColor(0, pixels.Color(255, 0, 0));
-    pixels.setPixelColor(1, pixels.Color(0, 0, 255));
-    pixels.setPixelColor(2, pixels.Color(255, 0, 0));
-    pixels.setPixelColor(3, pixels.Color(0, 0, 255));
-    pixels.setPixelColor(4, pixels.Color(255, 0, 0));
-    pixels.setPixelColor(5, pixels.Color(0, 0, 255));
-    pixels.setPixelColor(6, pixels.Color(255, 0, 0));
-    pixels.setPixelColor(7, pixels.Color(0, 0, 255));
-    pixels.show();
 
-    digitalWrite(LED_BUILTIN, LOW);
+  if (LED == "ON") {                                                        
+    Serial.println("Led Turned ON"); 
+    digitalWrite(PIN_led, HIGH);
   }                                                  
   else if (LED == "OFF") {                                                
-    Serial.println("Led Turned OFF");
-    digitalWrite(LED_BUILTIN, HIGH);                                               
-    pixels.clear();
-    pixels.show();
+    Serial.println("Led Turned OFF");                                             
+    digitalWrite(PIN_led, LOW);
   }
-  */
   
   if (watering == "ON")
   {
@@ -85,6 +73,6 @@ void loop() {
   
   else if (watering == "OFF")
   {
-    myservo.write(15);
+    myservo.write(30);
   }
 }

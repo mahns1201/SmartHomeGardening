@@ -11,8 +11,8 @@ Servo myservo;
 
 #define FIREBASE_HOST "fir-please-edec2.firebaseio.com" // http달린거 빼고 적어야 됩니다.
 #define FIREBASE_AUTH "YM1pJNDozV21pY4Tfj6IDSQF0LnTTx1tI1ARDNSf" // 데이터베이스 비밀번호
-#define WIFI_SSID "iarslab" // 연결 가능한 wifi의 ssid
-#define WIFI_PASSWORD "iarslab0"
+#define WIFI_SSID "agring" // 연결 가능한 wifi의 ssid
+#define WIFI_PASSWORD "07721930"
 
 #define PIN_led 0
 #define PIN_watering 16

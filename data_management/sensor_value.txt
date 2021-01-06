@@ -1,1 +1,1 @@
-Light : 54612,Current_PPFD : 4847.59,Humidity : 0.00,Temperature : 0.00,Soil_Moisture : 43
+Light : 596,Light : 52.90,Humidity : 34.70,Temperature : 10.60,Soil_Moisture : 81

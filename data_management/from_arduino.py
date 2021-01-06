@@ -1,6 +1,6 @@
 import serial
 
-port = 'COM4'
+port = 'COM5'
 BAUDRATE = 9600
 
 ard = serial.Serial(port, BAUDRATE)
